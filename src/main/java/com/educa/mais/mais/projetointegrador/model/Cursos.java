@@ -26,7 +26,7 @@ public class Cursos {
 	public String modelo;
 	
 	@NotNull
-	public String nomedocurso;
+	private String nome;
 	
 	@NotNull
 	public String professor;
@@ -55,12 +55,12 @@ public class Cursos {
 		this.modelo = modelo;
 	}
 
-	public String getNomedocurso() {
-		return nomedocurso;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setNomedocurso(String nomedocurso) {
-		this.nomedocurso = nomedocurso;
+	public void setNomedocurso(String nome) {
+		this.nome = nome;
 	}
 
 	public String getProfessor() {
