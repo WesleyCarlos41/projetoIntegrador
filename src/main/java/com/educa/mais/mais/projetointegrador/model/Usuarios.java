@@ -1,6 +1,7 @@
 package com.educa.mais.mais.projetointegrador.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -46,7 +47,9 @@ public class Usuarios {
 	
 	@NotNull
 	public String endereco;
-	
+	@ManyToOne
+	@JsonIgnoreProperties("usuarios")
+	private Cursos cursos;
 
 
 	public Long getId() {
@@ -120,6 +123,17 @@ public class Usuarios {
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
+
+	public Cursos getCursos() {
+		return cursos;
+	}
+
+	public void setCursos(Cursos cursos) {
+		this.cursos = cursos;
+	}
+
+
+
 
 
 }

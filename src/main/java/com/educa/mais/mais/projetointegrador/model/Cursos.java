@@ -37,6 +37,9 @@ public class Cursos {
 	@NotNull
 	public String duracao;
 	
+	@OneToMany(mappedBy="cursos", cascade=CascadeType.ALL)
+	@JsonIgnoreProperties("cursos")
+	private List<Usuarios> usuarios;
 	
 	
 	public Long getId() {
@@ -85,6 +88,20 @@ public class Cursos {
 
 	public void setDuracao(String duracao) {
 		this.duracao = duracao;
+	}
+
+	
+
+	public List<Usuarios> getUsuarios() {
+		return usuarios;
+	}
+
+	public void setUsuarios(List<Usuarios> usuarios) {
+		this.usuarios = usuarios;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	
