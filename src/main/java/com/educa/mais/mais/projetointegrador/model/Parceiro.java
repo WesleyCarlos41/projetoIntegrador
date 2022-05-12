@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -23,6 +24,10 @@ public class Parceiro {
 	
 	@NotNull
 	private String nome;
+	
+	@Email
+	@NotNull
+	private String usuarioparceiro;
 	
 	@NotNull
 	private String descricao;
@@ -45,7 +50,7 @@ public class Parceiro {
 	private List<Usuario> usuario;
 	
 	//Métodos acessores e modificadores
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -60,6 +65,14 @@ public class Parceiro {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public String getUsuarioparceiro() {
+		return usuarioparceiro;
+	}
+
+	public void setUsuarioparceiro(String usuarioparceiro) {
+		this.usuarioparceiro = usuarioparceiro;
 	}
 
 	public String getDescricao() {
@@ -93,12 +106,12 @@ public class Parceiro {
 	public void setDescrivagas(String descrivagas) {
 		this.descrivagas = descrivagas;
 	}
-	
+
 	public List<Curso> getCurso() {
 		return curso;
 	}
 
-	public void setCursos(List<Curso> curso) {
+	public void setCurso(List<Curso> curso) {
 		this.curso = curso;
 	}
 
@@ -109,4 +122,9 @@ public class Parceiro {
 	public void setUsuario(List<Usuario> usuario) {
 		this.usuario = usuario;
 	}
+	
+	
+	
+
+	
 }
