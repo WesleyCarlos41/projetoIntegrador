@@ -1,7 +1,6 @@
 package com.educa.mais.mais.projetointegrador.model;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -26,8 +26,9 @@ public class Usuarios {
 	@NotNull
 	public String nome;
 	
+	@Email
 	@NotNull
-	public String email;
+	public String usuario;
 	
 	@NotNull
 	public String senha;
@@ -47,6 +48,7 @@ public class Usuarios {
 	
 	@NotNull
 	public String endereco;
+	
 	@ManyToOne
 	@JsonIgnoreProperties("usuarios")
 	private Cursos cursos;
@@ -69,11 +71,11 @@ public class Usuarios {
 	}
 
 	public String getEmail() {
-		return email;
+		return usuario;
 	}
 
 	public void setEmail(String email) {
-		this.email = email;
+		this.usuario = email;
 	}
 
 	public String getSenha() {
@@ -131,9 +133,5 @@ public class Usuarios {
 	public void setCursos(Cursos cursos) {
 		this.cursos = cursos;
 	}
-
-
-
-
 
 }

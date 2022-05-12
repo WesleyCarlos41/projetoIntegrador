@@ -1,12 +1,14 @@
 package com.educa.mais.mais.projetointegrador.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,14 +22,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.educa.mais.mais.projetointegrador.model.Usuarios;
 import com.educa.mais.mais.projetointegrador.repository.UsuariosRepository;
 
-
 @RestController
 @RequestMapping ("/Usuarios")
 @CrossOrigin("*")
 public class UsuariosController {
-
-	
-	
 
 		@Autowired
 		private UsuariosRepository repository;
@@ -43,15 +41,16 @@ public class UsuariosController {
 			return repository.findById (id).map(resposta -> ResponseEntity.ok(resposta)).orElse(ResponseEntity.notFound().build());
 		}
 		
-		@GetMapping ("/nome/{nome}")
-		public ResponseEntity<List<Usuarios>> getByNome (@PathVariable String nome) {
-			return ResponseEntity.ok(repository.findAllByNomeContainingIgnoreCase(nome));
+		@GetMapping ("/usuario/{usuario}")
+		public ResponseEntity<Optional<Usuarios>> getByUsuario (@PathVariable String usuario) {
+			return ResponseEntity.ok(repository.findByUsuario(usuario));
 		}
 		
-		@PostMapping 
-		public ResponseEntity<Usuarios> post (@Valid @RequestBody Usuarios usuario) {
-			return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(usuario));
-		}
+		//@PostMapping("/cadastrar") 
+		
+		
+		//@PostMapping("/logar")
+		
 		
 		@PutMapping 
 		public ResponseEntity<Usuarios> put (@Valid @RequestBody Usuarios usuario) {

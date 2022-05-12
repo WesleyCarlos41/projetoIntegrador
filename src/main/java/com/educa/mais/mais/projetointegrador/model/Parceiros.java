@@ -1,10 +1,13 @@
 package com.educa.mais.mais.projetointegrador.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -16,23 +19,32 @@ public class Parceiros {
  
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Long id;
+	private Long id;
 	
 	@NotNull
-	public String nome;
+	private String nome;
 	
 	@NotNull
-	public String descricao;
+	private String descricao;
 	
 	@NotNull
-	public int qtdvagas;
+	private int qtdvagas;
 	
 	@NotNull
-	public String cnpj;
+	private String cnpj;
 	
 	@NotNull
-	public String descrivagas;
-
+	private String descrivagas;
+	
+	@OneToMany(mappedBy = "parceiros", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("parceiros")
+	private List<Cursos> cursos;
+	
+	@OneToMany(mappedBy = "parceiros", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("parceiros")
+	private List<Usuarios> usuarios;
+	
+	//Métodos acessores e modificadores
 	
 	public Long getId() {
 		return id;
@@ -81,6 +93,20 @@ public class Parceiros {
 	public void setDescrivagas(String descrivagas) {
 		this.descrivagas = descrivagas;
 	}
+	
+	public List<Cursos> getCursos() {
+		return cursos;
+	}
 
+	public void setCursos(List<Cursos> cursos) {
+		this.cursos = cursos;
+	}
 
+	public List<Usuarios> getUsuarios() {
+		return usuarios;
+	}
+
+	public void setUsuarios(List<Usuarios> usuarios) {
+		this.usuarios = usuarios;
+	}
 }
