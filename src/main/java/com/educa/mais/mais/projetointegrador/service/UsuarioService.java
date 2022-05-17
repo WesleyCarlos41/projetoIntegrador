@@ -45,7 +45,7 @@ public class UsuarioService {
 		return encoder.encode(senha);
 	}
 	
-	public Optional<UsuarioLogin> autenticaUsuario(Optional<UsuarioLogin> usuarioLogin) {
+	public Optional<UsuarioLogin> autenticarUsuario(Optional<UsuarioLogin> usuarioLogin) {
 		Optional<Usuario> usuario = repository.findByUsuario(usuarioLogin.get().getUsuario());
 	
 		if (usuario.isPresent()) {

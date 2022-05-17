@@ -11,6 +11,6 @@ import com.educa.mais.mais.projetointegrador.model.Parceiro;
 	
 @Repository
 public interface ParceiroRepository  extends JpaRepository<Parceiro, Long> {
-	public Optional<Parceiro> findByUsuarioParceiro(String usuarioparceiro );
+	public Optional<Parceiro> findByCnpj(String cnpj );
 
 }

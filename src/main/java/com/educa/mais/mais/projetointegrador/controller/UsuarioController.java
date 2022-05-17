@@ -8,7 +8,6 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.educa.mais.mais.projetointegrador.model.Usuario;
+import com.educa.mais.mais.projetointegrador.model.UsuarioLogin;
 import com.educa.mais.mais.projetointegrador.repository.UsuarioRepository;
+import com.educa.mais.mais.projetointegrador.service.UsuarioService;
 
 @RestController
 @RequestMapping ("/Usuarios")
@@ -30,6 +31,8 @@ public class UsuarioController {
 		@Autowired
 		private UsuarioRepository repository;
 		
+		@Autowired
+		private UsuarioService service;
 
 		@GetMapping
 		public ResponseEntity<List<Usuario>> getAll() {
@@ -46,11 +49,21 @@ public class UsuarioController {
 			return ResponseEntity.ok(repository.findByUsuario(usuario));
 		}
 		
-		//@PostMapping("/cadastrar") 
-		
-		
-		//@PostMapping("/logar")
-		
+		@PostMapping("/logar")
+		public ResponseEntity<UsuarioLogin> login(@RequestBody Optional<UsuarioLogin> user) {
+			return service.autenticarUsuario(user).map(resposta -> ResponseEntity.ok(resposta))
+					.orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
+		}
+
+		@PostMapping("/cadastrar")
+		public ResponseEntity<Usuario> postUsuario(@Valid @RequestBody Usuario usuario) {
+
+			return service.cadastrarUsuario(usuario)
+					.map(resposta -> ResponseEntity.status(HttpStatus.CREATED).body(resposta))
+					.orElse(ResponseEntity.status(HttpStatus.BAD_REQUEST).build());
+
+			
+				}
 		
 		@PutMapping 
 		public ResponseEntity<Usuario> put (@Valid @RequestBody Usuario usuario) {

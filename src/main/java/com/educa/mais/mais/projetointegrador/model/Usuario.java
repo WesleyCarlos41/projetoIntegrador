@@ -15,6 +15,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 @Entity
 @Table(name = "tb_usuarios")
 public class Usuario {
@@ -26,6 +28,7 @@ public class Usuario {
 	@NotNull
 	public String nome;
 	
+	@Schema(example = "email@email.com")
 	@Email
 	@NotNull
 	public String usuario;

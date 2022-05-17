@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.educa.mais.mais.projetointegrador.model.Parceiro;
 import com.educa.mais.mais.projetointegrador.model.Usuario;
 
 
@@ -17,19 +18,23 @@ public class UserDetailsImpl implements UserDetails {
 	private String userName;
 	private String password;
 
-	
+		
 	private List<GrantedAuthority> authorities;
 
 	public UserDetailsImpl(Usuario usuario) {
 		this.userName = usuario.getUsuario();
 		this.password = usuario.getSenha();
 	}
-
+	
+	
+	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return authorities;
 	}
-
+	
+	
+	
 	@Override
 	public String getPassword() {
 		return password;

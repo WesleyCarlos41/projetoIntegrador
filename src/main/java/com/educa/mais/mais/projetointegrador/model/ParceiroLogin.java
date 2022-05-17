@@ -14,6 +14,16 @@ public class ParceiroLogin {
 		
 		private String descrivagas;
 		
+		private String usuarioparceiro;
+		
+		public String getUsuarioparceiro() {
+			return usuarioparceiro;
+		}
+
+		public void setUsuarioparceiro(String usuarioparceiro) {
+			this.usuarioparceiro = usuarioparceiro;
+		}
+
 		private String token;
 
 		public Long getId() {
