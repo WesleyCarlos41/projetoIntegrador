@@ -1,7 +1,6 @@
 package com.educa.mais.mais.projetointegrador.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -18,41 +17,41 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.educa.mais.mais.projetointegrador.model.Parceiro;
-import com.educa.mais.mais.projetointegrador.repository.ParceiroRepository;
+import com.educa.mais.mais.projetointegrador.model.Categoria;
+import com.educa.mais.mais.projetointegrador.repository.CategoriaRepository;
 
 @RestController
-@RequestMapping ("/Parceiros")
+@RequestMapping ("/Categoria")
 @CrossOrigin ("*")
 
-public class ParceiroController {
+public class CategoriaController {
 	@Autowired
-	private ParceiroRepository repository;
+	private CategoriaRepository repository;
 	
 
 	@GetMapping
-	public ResponseEntity<List<Parceiro>> getAll() {
+	public ResponseEntity<List<Categoria>> getAll() {
 		return ResponseEntity.ok(repository.findAll());
 	}
 
 	@GetMapping ("/{id}")
-	public ResponseEntity<Parceiro> getById(@PathVariable long id) {
+	public ResponseEntity<Categoria> getById(@PathVariable long id) {
 		return repository.findById (id).map(resposta -> ResponseEntity.ok(resposta)).orElse(ResponseEntity.notFound().build());
 	}
 	
-	@GetMapping ("/parceiro/{parceiro}")
-	public ResponseEntity<Optional<Parceiro>> getByUsuarioParceiro (@PathVariable String usuarioparceiro) {
-		return ResponseEntity.ok(repository.findByUsuarioParceiro(usuarioparceiro));
-	}
+	@GetMapping ("/categoria/{categoria}")
+	public ResponseEntity<List<Categoria>> getByCategoria (@PathVariable String categoria) {
+		return ResponseEntity.ok(repository.findBycategoriaContainingIgnoreCase(categoria));
+}
 	
 	@PostMapping 
-	public ResponseEntity<Parceiro> post (@Valid @RequestBody Parceiro usuarioparceiro) {
-		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(usuarioparceiro));
+	public ResponseEntity<Categoria> post (@Valid @RequestBody Categoria categoria) {
+		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(categoria));
 	}
 	
 	@PutMapping 
-	public ResponseEntity<Parceiro> put (@Valid @RequestBody Parceiro usuarioparceiro) {
-		return ResponseEntity.status(HttpStatus.OK).body(repository.save(usuarioparceiro));
+	public ResponseEntity<Categoria> put (@Valid @RequestBody Categoria categoria) {
+		return ResponseEntity.status(HttpStatus.OK).body(repository.save(categoria));
 	}
 	
 	@DeleteMapping ("/{id}")

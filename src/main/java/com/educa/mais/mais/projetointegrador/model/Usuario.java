@@ -15,6 +15,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 @Entity
 @Table(name = "tb_usuarios")
 public class Usuario {
@@ -26,6 +28,7 @@ public class Usuario {
 	@NotNull
 	public String nome;
 	
+	@Schema(example = "email@email.com")
 	@Email
 	@NotNull
 	public String usuario;
@@ -39,15 +42,17 @@ public class Usuario {
 	@NotNull
 	public String foto;
 	
-	@NotNull
+	
 	@DateTimeFormat (pattern = "dd/mm/yyyy")
 	public Date dtnascimento;
 	
-	@NotNull
+	
 	public String celular;
 	
-	@NotNull
+	
 	public String endereco;
+	
+	public String tipo;
 	
 	@ManyToOne
 	@JsonIgnoreProperties("usuario")
@@ -55,7 +60,7 @@ public class Usuario {
 	
 	@ManyToOne
 	@JsonIgnoreProperties("usuario")
-	private Parceiro parceiro;
+	private Categoria categoria;
 
 
 	public Long getId() {
@@ -66,12 +71,12 @@ public class Usuario {
 		this.id = id;
 	}
 
-	public Parceiro getParceiro() {
-		return parceiro;
+	public Categoria getParceiro() {
+		return categoria;
 	}
 
-	public void setParceiro(Parceiro parceiro) {
-		this.parceiro = parceiro;
+	public void setParceiro(Categoria parceiro) {
+		this.categoria = parceiro;
 	}
 
 	public void setCurso(Curso curso) {
@@ -150,5 +155,22 @@ public class Usuario {
 	public void setCursos(Curso curso) {
 		this.curso = curso;
 	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+	
 
 }

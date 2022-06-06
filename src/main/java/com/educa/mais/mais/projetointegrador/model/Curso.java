@@ -19,9 +19,7 @@ public class Curso {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long id;
 	
-	@NotNull
-	public String modelo;
-	
+
 	@NotNull
 	private String nome;
 	
@@ -40,15 +38,15 @@ public class Curso {
 	
 	@ManyToOne
 	@JsonIgnoreProperties("curso")
-	private Parceiro parceiro;
+	private Categoria categoria;
 	
 	
-	public Parceiro getParceiro() {
-		return parceiro;
+	public Categoria getParceiro() {
+		return categoria;
 	}
 
-	public void setParceiro(Parceiro parceiro) {
-		this.parceiro = parceiro;
+	public void setParceiro(Categoria parceiro) {
+		this.categoria = parceiro;
 	}
 
 	public void setUsuario(Usuario usuario) {
@@ -61,14 +59,6 @@ public class Curso {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getModelo() {
-		return modelo;
-	}
-
-	public void setModelo(String modelo) {
-		this.modelo = modelo;
 	}
 
 	public String getNome() {

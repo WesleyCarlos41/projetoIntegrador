@@ -18,6 +18,7 @@ public class UsuarioLogin {
 	
 	private String endereco;
 	
+	private String tipo;
 	private String token;
 
 	public Long getId() {
@@ -93,5 +94,14 @@ public class UsuarioLogin {
 	public void setToken(String token) {
 		this.token = token;
 	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+	
 
 }

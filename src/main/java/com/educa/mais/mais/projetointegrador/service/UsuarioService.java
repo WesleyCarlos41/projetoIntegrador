@@ -45,7 +45,7 @@ public class UsuarioService {
 		return encoder.encode(senha);
 	}
 	
-	public Optional<UsuarioLogin> autenticaUsuario(Optional<UsuarioLogin> usuarioLogin) {
+	public Optional<UsuarioLogin> autenticarUsuario(Optional<UsuarioLogin> usuarioLogin) {
 		Optional<Usuario> usuario = repository.findByUsuario(usuarioLogin.get().getUsuario());
 	
 		if (usuario.isPresent()) {
@@ -57,6 +57,10 @@ public class UsuarioService {
 				usuarioLogin.get()
 						.setToken(gerarBasicToken(usuarioLogin.get().getUsuario(), usuarioLogin.get().getSenha()));
 				usuarioLogin.get().setSenha(usuario.get().getSenha());
+				usuarioLogin.get().setTipo(usuario.get().getTipo());
+				usuarioLogin.get().setCelular(usuario.get().getCelular());	
+				usuarioLogin.get().setPronome(usuario.get().getPronome());
+				usuarioLogin.get().setEndereco(usuario.get().getEndereco());
 
 				return usuarioLogin;	
 			}
