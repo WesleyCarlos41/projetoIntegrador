@@ -16,8 +16,6 @@ public class UsuarioLogin {
 	
 	private String celular;
 	
-	private String endereco;
-	
 	private String tipo;
 	private String token;
 
@@ -79,13 +77,6 @@ public class UsuarioLogin {
 		this.celular = celular;
 	}
 
-	public String getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
-	}
 
 	public String getToken() {
 		return token;

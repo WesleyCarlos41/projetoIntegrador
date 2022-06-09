@@ -25,7 +25,7 @@ import com.educa.mais.mais.projetointegrador.repository.UsuarioRepository;
 import com.educa.mais.mais.projetointegrador.service.UsuarioService;
 
 @RestController
-@RequestMapping ("/Usuarios")
+@RequestMapping ("/usuarios")
 @CrossOrigin("*")
 public class UsuarioController {
 

@@ -36,21 +36,14 @@ public class Usuario {
 	@NotNull
 	public String senha;
 	
-	@NotNull
+	
 	public String pronome;
 	
-	@NotNull
+	
 	public String foto;
 	
 	
-	@DateTimeFormat (pattern = "dd/mm/yyyy")
-	public Date dtnascimento;
-	
-	
 	public String celular;
-	
-	
-	public String endereco;
 	
 	public String tipo;
 	
@@ -124,13 +117,6 @@ public class Usuario {
 		this.foto = foto;
 	}
 
-	public Date getDtnascimento() {
-		return dtnascimento;
-	}
-
-	public void setDtnascimento(Date dtnascimento) {
-		this.dtnascimento = dtnascimento;
-	}
 
 	public String getCelular() {
 		return celular;
@@ -138,14 +124,6 @@ public class Usuario {
 
 	public void setCelular(String celular) {
 		this.celular = celular;
-	}
-
-	public String getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
 	}
 
 	public Curso getCurso() {

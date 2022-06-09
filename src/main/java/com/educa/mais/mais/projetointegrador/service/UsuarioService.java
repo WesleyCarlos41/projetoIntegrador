@@ -60,7 +60,7 @@ public class UsuarioService {
 				usuarioLogin.get().setTipo(usuario.get().getTipo());
 				usuarioLogin.get().setCelular(usuario.get().getCelular());	
 				usuarioLogin.get().setPronome(usuario.get().getPronome());
-				usuarioLogin.get().setEndereco(usuario.get().getEndereco());
+				
 
 				return usuarioLogin;	
 			}
